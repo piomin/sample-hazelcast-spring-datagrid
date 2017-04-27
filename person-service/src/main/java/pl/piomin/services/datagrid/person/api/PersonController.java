@@ -26,4 +26,8 @@ public class PersonController {
 		return repository.findOne(id);
 	}
 	
+	@GetMapping("/persons")
+	public List<Person> findAll() {
+		return (List<Person>) repository.findAll();
+	}
 }
