@@ -13,6 +13,7 @@ spring:
       hibernate:
         show_sql: true
         cache:
+          use_query_cache: true
           use_second_level_cache: true
           hazelcast:
             use_native_client: true
@@ -24,5 +25,5 @@ spring:
             
 logging:
   level:
-    com.hazelcast: TRACE
+    com.hazelcast: DEBUG
     org.hibernate: DEBUG

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hazelcast xmlns="http://www.hazelcast.com/schema/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.hazelcast.com/schema/config http://www.hazelcast.com/schema/config/hazelcast-config-3.8.xsd">
+     <group>
+          <name>dev</name>
+          <password>dev-pass</password>
+     </group>
+     <management-center enabled="true" update-interval="3">http://192.168.99.100:38080/mancenter</management-center>
+     <network>
+          <port port-count="100" auto-increment="true">5701</port>
+          <reuse-address>true</reuse-address>
+          <outbound-ports>
+               <ports>0</ports>
+          </outbound-ports>
+          <join>
+               <multicast enabled="true" loopbackModeEnabled="false">
+                    <multicast-group>224.2.2.3</multicast-group>
+                    <multicast-port>54327</multicast-port>
+                    <multicast-timeout-seconds>2</multicast-timeout-seconds>
+                    <multicast-time-to-live>32</multicast-time-to-live>
+               </multicast>
+               <tcp-ip enabled="false" connection-timeout-seconds="5">
+                    <member-list>
+                         <member>127.0.0.1</member>
+                         <member>127.0.0.1</member>
+                    </member-list>
+               </tcp-ip>
+               <aws enabled="false">
+                    <access-key>my-access-key</access-key>
+                    <secret-key>my-secret-key</secret-key>
+                    <region>us-west-1</region>
+                    <host-header>ec2.amazonaws.com</host-header>
+                    <security-group-name>hazelcast-sg</security-group-name>
+                    <tag-key>type</tag-key>
+                    <tag-value>hz-nodes</tag-value>
+               </aws>
+               <discovery-strategies/>
+          </join>
+          <interfaces enabled="false">
+               <interface>10.10.1.*</interface>
+          </interfaces>
+          <ssl enabled="false"/>
+          <socket-interceptor enabled="false"/>
+          <symmetric-encryption enabled="false">
+               <algorithm>PBEWithMD5AndDES</algorithm>
+               <salt>thesalt</salt>
+               <password>thepass</password>
+               <iteration-count>19</iteration-count>
+          </symmetric-encryption>
+     </network>
+     <map name="default">
+          <in-memory-format>BINARY</in-memory-format>
+          <statistics-enabled>true</statistics-enabled>
+          <optimize-queries>false</optimize-queries>
+          <cache-deserialized-values>INDEX-ONLY</cache-deserialized-values>
+          <backup-count>1</backup-count>
+          <async-backup-count>0</async-backup-count>
+          <time-to-live-seconds>0</time-to-live-seconds>
+          <max-idle-seconds>0</max-idle-seconds>
+          <eviction-policy>NONE</eviction-policy>
+          <max-size policy="PER_NODE">2147483647</max-size>
+          <eviction-percentage>25</eviction-percentage>
+          <min-eviction-check-millis>100</min-eviction-check-millis>
+          <merge-policy>com.hazelcast.map.merge.PutIfAbsentMapMergePolicy</merge-policy>
+          <read-backup-data>false</read-backup-data>
+          <hot-restart enabled="false">
+               <fsync>false</fsync>
+          </hot-restart>
+          <map-store enabled="false">
+               <write-delay-seconds>0</write-delay-seconds>
+               <write-batch-size>1</write-batch-size>
+          </map-store>
+     </map>
+     <queue name="default">
+          <statistics-enabled>true</statistics-enabled>
+          <max-size>2147483647</max-size>
+          <backup-count>1</backup-count>
+          <async-backup-count>0</async-backup-count>
+          <empty-queue-ttl>-1</empty-queue-ttl>
+     </queue>
+     <multimap name="default">
+          <backup-count>1</backup-count>
+          <async-backup-count>0</async-backup-count>
+          <statistics-enabled>true</statistics-enabled>
+          <binary>true</binary>
+          <value-collection-type>SET</value-collection-type>
+     </multimap>
+     <list name="default">
+          <statistics-enabled>true</statistics-enabled>
+          <max-size>2147483647</max-size>
+          <backup-count>1</backup-count>
+          <async-backup-count>0</async-backup-count>
+     </list>
+     <set name="default">
+          <statistics-enabled>true</statistics-enabled>
+          <max-size>2147483647</max-size>
+          <backup-count>1</backup-count>
+          <async-backup-count>0</async-backup-count>
+     </set>
+     <semaphore name="default">
+          <initial-permits>0</initial-permits>
+          <backup-count>1</backup-count>
+          <async-backup-count>0</async-backup-count>
+     </semaphore>
+     <ringbuffer name="default">
+          <capacity>10000</capacity>
+          <time-to-live-seconds>0</time-to-live-seconds>
+          <backup-count>1</backup-count>
+          <async-backup-count>0</async-backup-count>
+          <in-memory-format>BINARY</in-memory-format>
+          <ringbuffer-store enabled="false"/>
+     </ringbuffer>
+     <executor-service name="default">
+          <statistics-enabled>true</statistics-enabled>
+          <pool-size>16</pool-size>
+          <queue-capacity>0</queue-capacity>
+     </executor-service>
+     <partition-group enabled="false" group-type="PER_MEMBER"/>
+     <serialization>
+          <portable-version>0</portable-version>
+          <use-native-byte-order>false</use-native-byte-order>
+          <byte-order>BIG_ENDIAN</byte-order>
+          <enable-compression>false</enable-compression>
+          <enable-shared-object>true</enable-shared-object>
+          <allow-unsafe>false</allow-unsafe>
+          <check-class-def-errors>true</check-class-def-errors>
+     </serialization>
+     <reliable-topic name="default">
+          <statistics-enabled>true</statistics-enabled>
+          <read-batch-size>10</read-batch-size>
+          <topic-overload-policy>BLOCK</topic-overload-policy>
+     </reliable-topic>
+     <lite-member enabled="false"/>
+     <native-memory enabled="false" allocator-type="POOLED">
+          <size unit="MEGABYTES" value="512"/>
+          <min-block-size>16</min-block-size>
+          <page-size>4194304</page-size>
+          <metadata-space-percentage>12.5</metadata-space-percentage>
+     </native-memory>
+     <services enable-defaults="true"/>
+     <hot-restart-persistence enabled="false">
+          <base-dir>/opt/hazelcast/hot-restart</base-dir>
+          <parallelism>1</parallelism>
+          <validation-timeout-seconds>120</validation-timeout-seconds>
+          <data-load-timeout-seconds>900</data-load-timeout-seconds>
+          <cluster-data-recovery-policy>FULL_RECOVERY_ONLY</cluster-data-recovery-policy>
+     </hot-restart-persistence>
+</hazelcast>
