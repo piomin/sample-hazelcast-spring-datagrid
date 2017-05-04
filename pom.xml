@@ -52,5 +52,6 @@
 
 	<modules>
 		<module>person-service</module>
+		<module>employee-service</module>
 	</modules>
 </project>
