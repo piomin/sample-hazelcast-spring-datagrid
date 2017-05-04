@@ -31,17 +31,18 @@ public class PersonController {
 	@Autowired
 	PersonRepository repository;
 	
-//	@Autowired
-//	HazelcastInstance instance;
+	@Autowired
+	HazelcastInstance instance;
 	IMap<Integer, Person> map;
 	
-	@Autowired  
-	   SessionFactory sessionFactory; 
+//	@Autowired  
+//	   SessionFactory sessionFactory; 
 	
 	@PostConstruct
 	public void init() {
-		HazelcastInstance instance = HazelcastAccessor.getHazelcastInstance(sessionFactory);
+//		HazelcastInstance instance = HazelcastAccessor.getHazelcastInstance(sessionFactory);
 		map = instance.getMap("pl.piomin.services.datagrid.person.model.Person");
+//		map.addIndex("pesel", false);
 		logger.info("Persons cache: " + map.size());
 
 	}
@@ -52,7 +53,7 @@ public class PersonController {
 		Predicate predicate = e.get("pesel").is(pesel);
 		Predicate peselPredicate = Predicates.equal("pesel", pesel);
 //		Predicate predicate = e.is( "active" ).and( e.get( "age" ).lessThan( 30 ) );
-		Collection<Person> ps = map.values(peselPredicate);
+		Collection<Person> ps = map.values(predicate);
 		
 //		List<Person> ps = (List<Person>) map.values();
 //		Person p = ps.get(0);

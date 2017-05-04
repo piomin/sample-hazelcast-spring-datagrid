@@ -1,0 +1,6 @@
+server:  
+  port: ${PORT:3333}
+
+spring:  
+  application:
+    name: member-service
