@@ -50,5 +50,6 @@
 		<module>person-service</module>
 		<module>employee-service</module>
 		<module>member-boot</module>
+		<module>common</module>
 	</modules>
 </project>

@@ -23,7 +23,8 @@ public class EmployeeApplication {
 	HazelcastInstance hazelcastInstance() {
 		ClientConfig config = new ClientConfig();
 		config.getGroupConfig().setName("dev").setPassword("dev-pass");
-		config.getNetworkConfig().addAddress("192.168.99.100:5701");
+//		config.getNetworkConfig().addAddress("192.168.99.100:5701");
+		config.getNetworkConfig().addAddress("localhost:5701");
 		
 		SerializerConfig sc = new SerializerConfig()
 				.setTypeClass(Employee.class).setClass(EmployeeSerializer.class);

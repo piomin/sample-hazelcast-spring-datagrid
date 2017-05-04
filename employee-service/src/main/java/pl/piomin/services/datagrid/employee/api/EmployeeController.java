@@ -37,7 +37,7 @@ public class EmployeeController {
 	@PostConstruct
 	public void init() {
 		map = instance.getMap("employee");
-		logger.info("Persons cache: " + map.size());
+		logger.info("Employees cache: " + map.size());
 
 	}
 	
@@ -47,8 +47,10 @@ public class EmployeeController {
 //		Predicate predicate = e.get("pesel").is(pesel);
 		Predicate predicate = Predicates.equal("personId", personId);
 //		Predicate predicate = e.is( "active" ).and( e.get( "age" ).lessThan( 30 ) );
-		Collection<Employee> ps = map.values(predicate);
-		
+		List<Employee> ps = (List<Employee>) map.values(predicate);
+		logger.info("Employees: " + ps);
+		if (ps.size() == 1)
+			return ps.get(0);
 //		List<Person> ps = (List<Person>) map.values();
 //		Person p = ps.get(0);
 		return repository.findByPersonId(personId);
