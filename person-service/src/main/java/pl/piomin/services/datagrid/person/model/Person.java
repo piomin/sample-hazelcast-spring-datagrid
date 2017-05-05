@@ -8,11 +8,9 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.cache.annotation.Cacheable;
 
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-//@KeySpace("person")
 public class Person implements Serializable {
 
 	private static final long serialVersionUID = 3214253910554454648L;
