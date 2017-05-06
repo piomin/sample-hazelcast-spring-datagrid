@@ -16,8 +16,9 @@ spring:
           use_query_cache: true
           use_second_level_cache: true
           hazelcast:
+#            instance_name: cache-1
             use_native_client: true
-            native_client_address: 192.168.99.100:5701
+            native_client_address: 192.168.99.100
             native_client_group: dev
             native_client_password: dev-pass
           region:
