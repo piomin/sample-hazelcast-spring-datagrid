@@ -6,9 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Entity
-// @KeySpace("person")
 public class Employee implements Serializable {
 
 	private static final long serialVersionUID = 3214253910554454648L;

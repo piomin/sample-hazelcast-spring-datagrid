@@ -43,17 +43,12 @@ public class EmployeeController {
 	
 	@GetMapping("/employees/person/{id}")
 	public Employee findByPersonId(@PathVariable("id") Integer personId) {
-//		EntryObject e = new PredicateBuilder().getEntryObject();
-//		Predicate predicate = e.get("pesel").is(pesel);
 		Predicate predicate = Predicates.equal("personId", personId);
-//		Predicate predicate = e.is( "active" ).and( e.get( "age" ).lessThan( 30 ) );
 		Collection<Employee> ps = map.values(predicate);
 		logger.info("Employees: " + ps);
 		Optional<Employee> e = ps.stream().findFirst();
 		if (e.isPresent())
 			return e.get();
-//		List<Person> ps = (List<Person>) map.values();
-//		Person p = ps.get(0);
 		return repository.findByPersonId(personId);
 	}
 	
