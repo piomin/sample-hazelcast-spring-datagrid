@@ -23,7 +23,7 @@ spring:
 #          region:
 #            factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
             
-logging:
-  level:
-    com.hazelcast: DEBUG
-    org.hibernate: DEBUG
+#logging:
+#  level:
+#    com.hazelcast: DEBUG
+#    org.hibernate: DEBUG
