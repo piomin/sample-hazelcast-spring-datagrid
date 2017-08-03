@@ -5,9 +5,9 @@ spring:
   application:
     name: employee-service
   datasource:
-    url: jdbc:mysql://192.168.99.100:33306/datagrid?useSSL=false
-    username: datagrid
-    password: datagrid
+    url: jdbc:mysql://192.168.99.100:33306/hz?useSSL=false
+    username: hz
+    password: hz123
 #  jpa:
 #    properties:
 #      hibernate:
