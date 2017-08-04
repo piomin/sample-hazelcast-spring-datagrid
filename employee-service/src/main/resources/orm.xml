@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings
+	xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+	version="2.4">
+	<entity name="employee" class="pl.piomin.services.datagrid.employee.model.Employee">
+		<table name="hz.employee" />
+		<attributes>
+			<id name="id" attribute-type="int">
+				<column nullable="false" name="id" />
+			</id>
+			<basic name="personId" attribute-type="int">
+				<column nullable="false" name="person_id" />
+			</basic>
+			<basic name="company" attribute-type="String">
+				<column name="company" />
+			</basic>
+		</attributes>
+	</entity>
+</entity-mappings>
