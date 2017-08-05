@@ -6,7 +6,7 @@
 	<version>1.0-SNAPSHOT</version>
 	<artifactId>employee-model</artifactId>
 	<packaging>jar</packaging>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -20,4 +20,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

@@ -5,11 +5,11 @@
 	<entity name="employee" class="pl.piomin.services.datagrid.employee.model.Employee">
 		<table name="hz.employee" />
 		<attributes>
-			<id name="id" attribute-type="int">
+			<id name="id" attribute-type="Integer">
 				<column nullable="false" name="id" />
 				<generated-value strategy="AUTO" />
 			</id>
-			<basic name="personId" attribute-type="int">
+			<basic name="personId" attribute-type="Integer">
 				<column nullable="false" name="person_id" />
 			</basic>
 			<basic name="company" attribute-type="String">

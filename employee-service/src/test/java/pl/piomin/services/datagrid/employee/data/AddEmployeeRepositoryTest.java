@@ -24,7 +24,7 @@ public class AddEmployeeRepositoryTest {
 	
 	@Test
 	public void add() {
-		for (int i = 0; i < 2000000; i++) {
+		for (int i = 150000; i < 2000000; i++) {
 			int ix = new Random().nextInt(100);
 			Employee e = new Employee();
 			e.setPersonId(i);

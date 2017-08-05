@@ -45,9 +45,7 @@ public class Employee implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((company == null) ? 0 : company.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((personId == null) ? 0 : personId.hashCode());
 		return result;
 	}
 
@@ -60,20 +58,10 @@ public class Employee implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Employee other = (Employee) obj;
-		if (company == null) {
-			if (other.company != null)
-				return false;
-		} else if (!company.equals(other.company))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (personId == null) {
-			if (other.personId != null)
-				return false;
-		} else if (!personId.equals(other.personId))
 			return false;
 		return true;
 	}
