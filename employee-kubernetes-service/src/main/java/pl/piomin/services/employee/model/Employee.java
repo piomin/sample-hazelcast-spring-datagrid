@@ -1,4 +1,4 @@
-package employee.model;
+package pl.piomin.services.employee.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

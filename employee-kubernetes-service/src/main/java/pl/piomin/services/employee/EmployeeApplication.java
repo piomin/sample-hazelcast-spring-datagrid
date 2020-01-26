@@ -1,4 +1,4 @@
-package employee;
+package pl.piomin.services.employee;
 
 import com.hazelcast.client.HazelcastClient;
 import com.hazelcast.client.config.ClientConfig;
@@ -6,20 +6,22 @@ import com.hazelcast.config.Config;
 import com.hazelcast.config.ManagementCenterConfig;
 import com.hazelcast.config.SerializerConfig;
 import com.hazelcast.core.HazelcastInstance;
-import employee.model.Employee;
+import pl.piomin.services.employee.model.Employee;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.hazelcast.repository.config.EnableHazelcastRepositories;
 
 @SpringBootApplication
+@EnableHazelcastRepositories
 public class EmployeeApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EmployeeApplication.class, args);
 	}
 
-//	@Bean
+	@Bean
 	HazelcastInstance hazelcastInstance() {
 		ClientConfig config = new ClientConfig();
 		config.getGroupConfig().setName("dev").setPassword("dev-pass");

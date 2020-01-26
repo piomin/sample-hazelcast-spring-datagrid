@@ -1,9 +1,9 @@
-package employee.data;
+package pl.piomin.services.employee.data;
 
 
 import java.util.List;
 
-import employee.model.Employee;
+import pl.piomin.services.employee.model.Employee;
 
 import org.springframework.data.repository.CrudRepository;
 

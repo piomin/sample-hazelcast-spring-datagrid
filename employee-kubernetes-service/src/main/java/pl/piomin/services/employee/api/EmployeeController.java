@@ -1,9 +1,9 @@
-package employee.api;
+package pl.piomin.services.employee.api;
 
 import java.util.List;
 
-import employee.data.EmployeeRepository;
-import employee.model.Employee;
+import pl.piomin.services.employee.data.EmployeeRepository;
+import pl.piomin.services.employee.model.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
