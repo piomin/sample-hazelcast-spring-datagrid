@@ -5,7 +5,7 @@ metadata:
   labels:
     app: employee-service
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: employee-service
@@ -33,3 +33,15 @@ spec:
   selector:
     app: employee-service
   type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hazelcast-service
+spec:
+  selector:
+    app: employee-service
+  ports:
+    - name: hazelcast
+      port: 5701
+  type: LoadBalancer

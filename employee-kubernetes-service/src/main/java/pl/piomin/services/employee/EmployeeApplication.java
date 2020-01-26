@@ -21,34 +21,36 @@ public class EmployeeApplication {
 		SpringApplication.run(EmployeeApplication.class, args);
 	}
 
-	@Bean
-	HazelcastInstance hazelcastInstance() {
-		ClientConfig config = new ClientConfig();
-		config.getGroupConfig().setName("dev").setPassword("dev-pass");
+//	@Bean
+//	HazelcastInstance hazelcastInstance() {
+//		Config config = new Config();
+//		config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
+//		config.getNetworkConfig().getJoin().getKubernetesConfig().setEnabled(true)
+//				.setProperty("namespace", "MY-KUBERNETES-NAMESPACE")
+//				.setProperty("service-name", "MY-SERVICE-NAME");
+//		config.getGroupConfig().setName("dev").setPassword("dev-pass");
 //		config.getNetworkConfig().addAddress("192.168.99.100:5701");
-		config.getNetworkConfig().addAddress("localhost:5701");
+//		config.getNetworkConfig().addAddress("localhost:5701");
 		
-		SerializerConfig sc = new SerializerConfig()
-				.setTypeClass(Employee.class);
+//		SerializerConfig sc = new SerializerConfig()
+//				.setTypeClass(Employee.class);
 //				.setClassName("com.hazelcast.hibernate.serialization.Hibernate5CacheEntrySerializer")
 //			    .setImplementation(new Hibernate5CacheEntrySerializerHook().createSerializer())
 //			    .setTypeClassName("pl.piomin.services.datagrid.person.model.Person");
-		config.getSerializationConfig().addSerializerConfig(sc);
+//		config.getSerializationConfig().addSerializerConfig(sc);
 		
-		HazelcastInstance instance = HazelcastClient.newHazelcastClient(config);
-		return instance;
-	}
+//		HazelcastInstance instance = HazelcastClient.newHazelcastClient(config);
+//		return null;
+//	}
 	
 	@Bean
 	Config config() {
-		Config c = new Config();
-		c.setInstanceName("cache-1");
-		c.getGroupConfig().setName("dev").setPassword("dev-pass");
-		ManagementCenterConfig mcc = new ManagementCenterConfig().setUrl("http://192.168.99.100:38080/mancenter").setEnabled(true);
-		c.setManagementCenterConfig(mcc);
-		SerializerConfig sc = new SerializerConfig().setTypeClass(Employee.class);
-		c.getSerializationConfig().addSerializerConfig(sc);
-		return c;
+		Config config = new Config();
+		config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
+		config.getNetworkConfig().getJoin().getKubernetesConfig().setEnabled(true)
+				.setProperty("namespace", "default")
+				.setProperty("service-name", "employee-service");
+		return config;
 	}
-	
+
 }
