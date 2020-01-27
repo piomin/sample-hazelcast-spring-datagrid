@@ -5,13 +5,16 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import org.springframework.data.annotation.Id;
+
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
 public class Employee {
 
-	private Integer id;
+	@Id
+	private Long id;
 	@EqualsAndHashCode.Exclude
 	private Integer personId;
 	@EqualsAndHashCode.Exclude

@@ -18,7 +18,10 @@ spec:
         - name: employee-service
           image: piomin/employee-service
           ports:
-            - containerPort: 8080
+            - name: http
+              containerPort: 8080
+            - name: multicast
+              containerPort: 5701
 ---
 apiVersion: v1
 kind: Service

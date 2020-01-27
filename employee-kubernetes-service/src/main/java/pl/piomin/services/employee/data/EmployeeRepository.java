@@ -7,7 +7,7 @@ import pl.piomin.services.employee.model.Employee;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
+public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 
 	Employee findByPersonId(Integer personId);
 	List<Employee> findByCompany(String company);
