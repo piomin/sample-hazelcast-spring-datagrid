@@ -1,5 +1,7 @@
 package pl.piomin.services.employee.model;
 
+import java.io.Serializable;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +13,7 @@ import org.springframework.data.annotation.Id;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class Employee {
+public class Employee implements Serializable {
 
 	@Id
 	private Long id;
@@ -21,5 +23,7 @@ public class Employee {
 	private String company;
 	@EqualsAndHashCode.Exclude
 	private String position;
+	@EqualsAndHashCode.Exclude
+	private int salary;
 
 }
