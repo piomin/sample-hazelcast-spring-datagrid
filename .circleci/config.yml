@@ -26,6 +26,5 @@ workflows:
     jobs:
       - maven/test:
           executor: machine_executor_amd64
-          command: 'package -DskipTests'
       - analyze:
           context: SonarCloud
