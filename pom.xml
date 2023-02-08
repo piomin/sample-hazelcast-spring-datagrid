@@ -9,15 +9,15 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.4.RELEASE</version>
+		<version>2.3.12.RELEASE</version>
 		<relativePath />
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<hazelcast.version>2.3</hazelcast.version>
-		<hazelcast-spring.version>2.3.0</hazelcast-spring.version>
+<!--		<hazelcast.version>2.3</hazelcast.version>-->
+<!--		<hazelcast-spring.version>2.3.0</hazelcast-spring.version>-->
 		<java.version>11</java.version>
 		<sonar.projectKey>piomin_sample-hazelcast-spring-datagrid</sonar.projectKey>
 		<sonar.organization>piomin</sonar.organization>

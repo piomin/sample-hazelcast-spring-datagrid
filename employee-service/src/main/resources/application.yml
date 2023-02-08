@@ -5,10 +5,12 @@ spring:
   application:
     name: employee-service
   datasource:
-    url: jdbc:mysql://192.168.99.100:33306/datagrid?useSSL=false
+    url: jdbc:mysql://localhost:33306/datagrid?useSSL=false
     username: datagrid
     password: datagrid
-#  jpa:
+  jpa:
+    hibernate:
+      ddl-auto: create
 #    properties:
 #      hibernate:
 #        show_sql: true
