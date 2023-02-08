@@ -1,14 +1,6 @@
 package pl.piomin.services.datagrid.employee.data;
 
-import java.io.IOException;
-
-import com.hazelcast.nio.ObjectDataInput;
-import com.hazelcast.nio.ObjectDataOutput;
-import com.hazelcast.nio.serialization.StreamSerializer;
-
-import pl.piomin.services.datagrid.employee.model.Employee;
-
-public class EmployeeSerializer implements StreamSerializer<Employee> {
+public class EmployeeSerializer { /*implements StreamSerializer<Employee> {
 
 	@Override
 	public int getTypeId() {
@@ -33,6 +25,6 @@ public class EmployeeSerializer implements StreamSerializer<Employee> {
 
 	@Override
 	public void destroy() {
-	}
+	}*/
 
 }

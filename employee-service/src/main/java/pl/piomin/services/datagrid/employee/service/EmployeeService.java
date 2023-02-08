@@ -8,13 +8,12 @@ import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
+import com.hazelcast.query.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
-import com.hazelcast.query.Predicate;
-import com.hazelcast.query.Predicates;
 
 import pl.piomin.services.datagrid.employee.data.EmployeeRepository;
 import pl.piomin.services.datagrid.employee.model.Employee;
@@ -40,7 +39,8 @@ public class EmployeeService {
 	
 	@SuppressWarnings("rawtypes")
 	public Employee findByPersonId(Integer personId) {
-		Predicate predicate = Predicates.equal("personId", personId);
+		EntryObject eo = new PredicateBuilder().getEntryObject();
+		Predicate predicate = eo.get("personId").equal(personId);
 		logger.info("Employee cache find");
 		Collection<Employee> ps = map.values(predicate);
 		logger.info("Employee cached: " + ps);
@@ -56,7 +56,8 @@ public class EmployeeService {
 	
 	@SuppressWarnings("rawtypes")
 	public List<Employee> findByCompany(String company) {
-		Predicate predicate = Predicates.equal("company", company);
+		EntryObject eo = new PredicateBuilder().getEntryObject();
+		Predicate predicate = eo.get("company").equal(company);
 		logger.info("Employees cache find");
 		Collection<Employee> ps = map.values(predicate);
 		logger.info("Employees cache size: " + ps.size());
@@ -76,7 +77,7 @@ public class EmployeeService {
 		Employee e = map.get(id);
 		if (e != null)
 			return e;
-		e = repository.findOne(id);
+		e = repository.findById(id).orElseThrow();
 		map.put(id, e);
 		return e;
 	}

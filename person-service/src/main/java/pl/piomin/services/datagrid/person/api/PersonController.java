@@ -37,7 +37,7 @@ public class PersonController {
 	
 	@GetMapping("/persons/{id}")
 	public Person findById(@PathVariable("id") Integer id) {
-		return repository.findOne(id);
+		return repository.findById(id).orElseThrow();
 	}
 	
 	@GetMapping("/persons")
