@@ -22,7 +22,7 @@ public class EmployeeApplication {
 //	@Bean
 	HazelcastInstance hazelcastInstance() {
 		ClientConfig config = new ClientConfig();
-		config.getGroupConfig().setName("dev").setPassword("dev-pass");
+		config.setClusterName("dev");
 		config.getNetworkConfig().addAddress("localhost:5701");
 		
 //		SerializerConfig sc = new SerializerConfig()
@@ -37,9 +37,9 @@ public class EmployeeApplication {
 	Config config() {
 		Config c = new Config();
 		c.setInstanceName("cache-1");
-		c.getGroupConfig().setName("dev").setPassword("dev-pass");
+		c.setClusterName("dev");
 		ManagementCenterConfig mcc = new ManagementCenterConfig()
-				.setUrl("http://localhost:38080/mancenter").setEnabled(true);
+				.setConsoleEnabled(true);
 		c.setManagementCenterConfig(mcc);
 		SerializerConfig sc = new SerializerConfig()
 				.setTypeClass(Employee.class)

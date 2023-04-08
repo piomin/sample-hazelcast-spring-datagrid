@@ -10,6 +10,7 @@ import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 import pl.piomin.services.datagrid.person.model.Person;
 
 import java.text.DecimalFormat;
@@ -27,12 +28,12 @@ public class AddPersonRepositoryTest {
 	PersonRepository repository;
 
 	@Container
-	private static final MySQLContainer MYSQL = new MySQLContainer()
+	private static final MySQLContainer MYSQL = new MySQLContainer(DockerImageName.parse("mysql:8.0"))
 			.withUsername("datagrid")
 			.withPassword("datagrid");
 
 	@Container
-	private static final GenericContainer HAZELCAST = new GenericContainer("hazelcast/hazelcast:3.12")
+	private static final GenericContainer HAZELCAST = new GenericContainer(DockerImageName.parse("hazelcast/hazelcast:5.1"))
 			.withExposedPorts(5701);
 
 	@DynamicPropertySource

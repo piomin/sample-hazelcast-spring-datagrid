@@ -1,22 +1,22 @@
 package pl.piomin.services.datagrid.employee.service;
 
+import com.hazelcast.config.IndexType;
+import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.map.IMap;
+import com.hazelcast.query.Predicate;
+import com.hazelcast.query.PredicateBuilder;
+import com.hazelcast.query.impl.PredicateBuilderImpl;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import pl.piomin.services.datagrid.employee.data.EmployeeRepository;
+import pl.piomin.services.datagrid.employee.model.Employee;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
-
-import javax.annotation.PostConstruct;
-
-import com.hazelcast.query.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.core.IMap;
-
-import pl.piomin.services.datagrid.employee.data.EmployeeRepository;
-import pl.piomin.services.datagrid.employee.model.Employee;
 
 @Service
 public class EmployeeService {
@@ -33,13 +33,13 @@ public class EmployeeService {
 	@PostConstruct
 	public void init() {
 		map = instance.getMap("employee");
-		map.addIndex("company", true);
+		map.addIndex(IndexType.HASH, "company");
 		logger.info("Employees cache: " + map.size());
 	}
 	
 	@SuppressWarnings("rawtypes")
 	public Employee findByPersonId(Integer personId) {
-		EntryObject eo = new PredicateBuilder().getEntryObject();
+		PredicateBuilder.EntryObject eo = new PredicateBuilderImpl().getEntryObject();
 		Predicate predicate = eo.get("personId").equal(personId);
 		logger.info("Employee cache find");
 		Collection<Employee> ps = map.values(predicate);
@@ -56,13 +56,13 @@ public class EmployeeService {
 	
 	@SuppressWarnings("rawtypes")
 	public List<Employee> findByCompany(String company) {
-		EntryObject eo = new PredicateBuilder().getEntryObject();
+		PredicateBuilder.EntryObject eo = new PredicateBuilderImpl().getEntryObject();
 		Predicate predicate = eo.get("company").equal(company);
 		logger.info("Employees cache find");
 		Collection<Employee> ps = map.values(predicate);
 		logger.info("Employees cache size: " + ps.size());
 		if (ps.size() > 0) {
-			return ps.stream().collect(Collectors.toList());
+			return new ArrayList<>(ps);
 		}
 		logger.info("Employees find");
 		List<Employee> e = repository.findByCompany(company);
