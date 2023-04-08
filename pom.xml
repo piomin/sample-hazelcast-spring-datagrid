@@ -16,9 +16,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-<!--		<hazelcast.version>2.3</hazelcast.version>-->
-<!--		<hazelcast-spring.version>2.3.0</hazelcast-spring.version>-->
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<sonar.projectKey>piomin_sample-hazelcast-spring-datagrid</sonar.projectKey>
 		<sonar.organization>piomin</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -30,8 +28,8 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
