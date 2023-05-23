@@ -17,31 +17,31 @@ import pl.piomin.services.datagrid.person.model.Person;
 @RestController
 public class PersonController {
 
-	protected Logger logger = Logger.getLogger(PersonController.class.getName());
+    protected Logger logger = Logger.getLogger(PersonController.class.getName());
 
-	@Autowired
-	PersonRepository repository;
-	@Autowired
-	CacheManager manager;
-	
-	@PostConstruct
-	public void init() {
-		logger.info("Cache manager: " + manager);
-		logger.info("Cache manager names: " + manager.getCacheNames());
-	}
-	
-	@GetMapping("/persons/pesel/{pesel}")
-	public List<Person> findByPesel(@PathVariable("pesel") String pesel) {
-		return repository.findByPesel(pesel);
-	}
-	
-	@GetMapping("/persons/{id}")
-	public Person findById(@PathVariable("id") Integer id) {
-		return repository.findById(id).orElseThrow();
-	}
-	
-	@GetMapping("/persons")
-	public List<Person> findAll() {
-		return (List<Person>) repository.findAll();
-	}
+    @Autowired
+    PersonRepository repository;
+    @Autowired
+    CacheManager manager;
+
+    @PostConstruct
+    public void init() {
+        logger.info("Cache manager: " + manager);
+        logger.info("Cache manager names: " + manager.getCacheNames());
+    }
+
+    @GetMapping("/persons/pesel/{pesel}")
+    public List<Person> findByPesel(@PathVariable("pesel") String pesel) {
+        return repository.findByPesel(pesel);
+    }
+
+    @GetMapping("/persons/{id}")
+    public Person findById(@PathVariable("id") Integer id) {
+        return repository.findById(id).orElseThrow();
+    }
+
+    @GetMapping("/persons")
+    public List<Person> findAll() {
+        return (List<Person>) repository.findAll();
+    }
 }

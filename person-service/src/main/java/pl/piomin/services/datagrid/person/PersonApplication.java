@@ -13,30 +13,23 @@ import org.springframework.context.annotation.Bean;
 @EnableCaching
 public class PersonApplication {
 
-	private static final Logger LOG = LoggerFactory.getLogger(PersonApplication.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PersonApplication.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(PersonApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(PersonApplication.class, args);
+    }
 
-	@Value("${spring.hazelcast.url:localhost:5701}")
-	private String hazelcastUrl;
+    @Value("${spring.hazelcast.url:localhost:5701}")
+    private String hazelcastUrl;
 
-	@Bean
-	ClientConfig clientConfig() {
-		LOG.info("Connecting Hazelcast: url={}", hazelcastUrl);
-		ClientConfig config = new ClientConfig();
-//		config.getGroupConfig().setName("dev").setPassword("dev-pass");
-		config.getNetworkConfig().addAddress(hazelcastUrl);
-		config.setInstanceName("cache-1");
-		return config;
-//		HazelcastInstance instance = HazelcastClient.newHazelcastClient(config);
-//		return instance;
-	}
+    @Bean
+    ClientConfig clientConfig() {
+        LOG.info("Connecting Hazelcast: url={}", hazelcastUrl);
+        ClientConfig config = new ClientConfig();
+        config.getNetworkConfig().addAddress(hazelcastUrl);
+        config.setInstanceName("cache-1");
+        return config;
+    }
 
-//	@Bean
-//	CacheManager cacheManager() {
-//		return new HazelcastCacheManager(hazelcastInstance());
-//	}
-		
+
 }

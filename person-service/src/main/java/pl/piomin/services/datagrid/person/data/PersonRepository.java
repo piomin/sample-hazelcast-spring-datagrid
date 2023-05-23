@@ -9,7 +9,7 @@ import pl.piomin.services.datagrid.person.model.Person;
 
 public interface PersonRepository extends CrudRepository<Person, Integer> {
 
-	@Cacheable("findByPesel")
-	public List<Person> findByPesel(String pesel);
-	
+    @Cacheable("findByPesel")
+    public List<Person> findByPesel(String pesel);
+
 }

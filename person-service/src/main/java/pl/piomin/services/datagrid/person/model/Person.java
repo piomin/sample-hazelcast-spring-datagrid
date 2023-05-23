@@ -12,59 +12,59 @@ import java.io.Serializable;
 @Entity
 public class Person implements Serializable {
 
-	private static final long serialVersionUID = 3214253910554454648L;
-	
-	@Id
-	@GeneratedValue
-	private Integer id;
-	private String firstName;
-	private String lastName;
-	private String pesel;
-	private int age;
+    private static final long serialVersionUID = 3214253910554454648L;
 
-	public Integer getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private String pesel;
+    private int age;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String getPesel() {
-		return pesel;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setPesel(String pesel) {
-		this.pesel = pesel;
-	}
+    public String getPesel() {
+        return pesel;
+    }
 
-	public int getAge() {
-		return age;
-	}
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
+    }
 
-	public void setAge(int age) {
-		this.age = age;
-	}
+    public int getAge() {
+        return age;
+    }
 
-	@Override
-	public String toString() {
-		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", pesel=" + pesel + "]";
-	}
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", pesel=" + pesel + "]";
+    }
 
 }

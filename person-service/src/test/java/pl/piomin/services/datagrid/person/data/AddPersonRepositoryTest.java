@@ -1,9 +1,9 @@
 package pl.piomin.services.datagrid.person.data;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.GenericContainer;
@@ -28,18 +28,19 @@ public class AddPersonRepositoryTest {
 	PersonRepository repository;
 
 	@Container
-	private static final MySQLContainer MYSQL = new MySQLContainer(DockerImageName.parse("mysql:8.0"))
+	@ServiceConnection
+	static final MySQLContainer<?> mysql = new MySQLContainer<>(DockerImageName.parse("mysql:8.0"))
 			.withUsername("datagrid")
 			.withPassword("datagrid");
 
 	@Container
-	private static final GenericContainer HAZELCAST = new GenericContainer(DockerImageName.parse("hazelcast/hazelcast:5.1"))
+//	@ServiceConnection
+	static final GenericContainer<?> hazelcast = new GenericContainer<>(DockerImageName.parse("hazelcast/hazelcast:5.1"))
 			.withExposedPorts(5701);
 
 	@DynamicPropertySource
-	static void mysqlProperties(DynamicPropertyRegistry registry) {
-		registry.add("spring.datasource.url", MYSQL::getJdbcUrl);
-		String url = HAZELCAST.getHost() + ":" + HAZELCAST.getFirstMappedPort();
+	static void hazelcastProperties(DynamicPropertyRegistry registry) {
+		String url = hazelcast.getHost() + ":" + hazelcast.getFirstMappedPort();
 		registry.add("spring.hazelcast.url", () -> url);
 	}
 
