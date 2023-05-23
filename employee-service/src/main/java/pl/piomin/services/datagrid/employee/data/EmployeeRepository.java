@@ -8,7 +8,8 @@ import pl.piomin.services.datagrid.employee.model.Employee;
 
 public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
 
-	public Employee findByPersonId(Integer personId);
-	public List<Employee> findByCompany(String company);
-	
+    public Employee findByPersonId(Integer personId);
+
+    public List<Employee> findByCompany(String company);
+
 }
