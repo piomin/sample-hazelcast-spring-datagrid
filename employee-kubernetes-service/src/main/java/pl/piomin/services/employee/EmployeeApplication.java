@@ -11,19 +11,19 @@ import org.springframework.data.hazelcast.repository.config.EnableHazelcastRepos
 @EnableHazelcastRepositories
 public class EmployeeApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(EmployeeApplication.class, args);
-	}
-	
-	@Bean
-	Config config() {
-		Config config = new Config();
-		config.getNetworkConfig().getJoin().getTcpIpConfig().setEnabled(false);
-		config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
-		config.getNetworkConfig().getJoin().getKubernetesConfig().setEnabled(true)
-				.setProperty("namespace", "default")
-				.setProperty("service-name", "hazelcast-service");
-		return config;
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(EmployeeApplication.class, args);
+    }
+
+    @Bean
+    Config config() {
+        Config config = new Config();
+        config.getNetworkConfig().getJoin().getTcpIpConfig().setEnabled(false);
+        config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
+        config.getNetworkConfig().getJoin().getKubernetesConfig().setEnabled(true)
+                .setProperty("namespace", "default")
+                .setProperty("service-name", "hazelcast-service");
+        return config;
+    }
 
 }
