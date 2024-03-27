@@ -1,6 +1,7 @@
 package pl.piomin.services.datagrid.person;
 
 import com.hazelcast.client.config.ClientConfig;
+import com.hazelcast.client.config.ClientConnectionStrategyConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +29,10 @@ public class PersonApplication {
         ClientConfig config = new ClientConfig();
         config.getNetworkConfig().addAddress(hazelcastUrl);
         config.setInstanceName("cache-1");
+
+        ClientConnectionStrategyConfig strategy = new ClientConnectionStrategyConfig();
+        strategy.setAsyncStart(true);
+        config.setConnectionStrategyConfig(strategy);
         return config;
     }
 

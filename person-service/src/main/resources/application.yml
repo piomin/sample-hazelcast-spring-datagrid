@@ -1,16 +1,26 @@
 server:  
   port: ${PORT:2222}
 
-spring:  
+spring:
   application:
     name: person-service
   datasource:
     url: jdbc:mysql://localhost:33306/datagrid?useSSL=false
     username: datagrid
     password: datagrid
+    hikari:
+      connection-timeout: 2000
+      initialization-fail-timeout: 0
   jpa:
-    hibernate:
-      ddl-auto: create
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+#    hibernate:
+#      dialect: org.hibernate.dialect.MySQL8Dialect
+#      ddl-auto: create
+
+
 #    properties:
 #      hibernate:
 #        show_sql: true
@@ -25,7 +35,10 @@ spring:
 #            native_client_password: dev-pass
 #          region:
 #            factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
-            
+
+  testcontainers:
+    beans:
+      startup: parallel
 #logging:
 #  level:
 #    com.hazelcast: DEBUG

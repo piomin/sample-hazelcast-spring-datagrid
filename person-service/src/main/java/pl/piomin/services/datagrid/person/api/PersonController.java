@@ -1,10 +1,12 @@
 package pl.piomin.services.datagrid.person.api;
 
 import java.util.List;
-import java.util.logging.Logger;
 
+import com.hazelcast.client.HazelcastClientOfflineException;
 import jakarta.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +19,7 @@ import pl.piomin.services.datagrid.person.model.Person;
 @RestController
 public class PersonController {
 
-    protected Logger logger = Logger.getLogger(PersonController.class.getName());
+    protected Logger logger = LoggerFactory.getLogger(PersonController.class.getName());
 
     @Autowired
     PersonRepository repository;
@@ -26,8 +28,12 @@ public class PersonController {
 
     @PostConstruct
     public void init() {
-        logger.info("Cache manager: " + manager);
-        logger.info("Cache manager names: " + manager.getCacheNames());
+        try {
+            logger.info("Cache manager: " + manager);
+            logger.info("Cache manager names: " + manager.getCacheNames());
+        } catch (HazelcastClientOfflineException e) {
+            logger.error("No Hazelcast connection", e);
+        }
     }
 
     @GetMapping("/persons/pesel/{pesel}")
