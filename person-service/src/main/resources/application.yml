@@ -16,10 +16,19 @@ spring:
 #    properties:
 #      hibernate:
 #        dialect: org.hibernate.dialect.MySQL8Dialect
-#    hibernate:
+    hibernate:
 #      dialect: org.hibernate.dialect.MySQL8Dialect
-#      ddl-auto: create
+      ddl-auto: create
 
+management:
+  endpoint:
+    caches:
+      enabled: false
+#management.endpoints.web.exposure.include: 'health'
+#management.endpoint.health:
+#  show-details: always
+#  probes:
+#    enabled: true
 
 #    properties:
 #      hibernate:
