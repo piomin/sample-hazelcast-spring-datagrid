@@ -12,12 +12,12 @@ spring:
       connection-timeout: 2000
       initialization-fail-timeout: 0
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.MySQLDialect
 #    properties:
 #      hibernate:
-#        dialect: org.hibernate.dialect.MySQL8Dialect
+#        dialect: org.hibernate.dialect.MySQLDialect
     hibernate:
-#      dialect: org.hibernate.dialect.MySQL8Dialect
+#      dialect: org.hibernate.dialect.MySQLDialect
       ddl-auto: create
 
 management:
