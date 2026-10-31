@@ -38,7 +38,8 @@ public class AddEmployeeRepositoryTest {
 
     @Container
     @ServiceConnection
-    private static final MySQLContainer<?> MYSQL = new MySQLContainer<>("mysql:8.0")
+    private static final MySQLContainer<?> MYSQL = new MySQLContainer<>("mysql:9.7")
+                .withConfigurationOverride("mysql-conf")
             .withUsername("datagrid")
             .withPassword("datagrid");
 
