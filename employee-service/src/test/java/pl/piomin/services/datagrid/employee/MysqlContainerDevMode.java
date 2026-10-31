@@ -11,7 +11,8 @@ public class MysqlContainerDevMode {
     @Bean
     @ServiceConnection
     public MySQLContainer<?> mysql() {
-        return new MySQLContainer<>("mysql:8.0")
+        return new MySQLContainer<>("mysql:9.7")
+                .withConfigurationOverride("mysql-conf")
                 .withUsername("datagrid")
                 .withPassword("datagrid");
     }

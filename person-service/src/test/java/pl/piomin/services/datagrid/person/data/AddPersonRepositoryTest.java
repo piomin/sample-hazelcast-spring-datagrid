@@ -40,13 +40,13 @@ public class AddPersonRepositoryTest {
 
 	@Container
 	@ServiceConnection
-	static final MySQLContainer<?> mysql = new MySQLContainer<>(DockerImageName.parse("mysql:8.0"))
+	static final MySQLContainer<?> mysql = new MySQLContainer<>(DockerImageName.parse("mysql:9.7"))
+			.withConfigurationOverride("mysql-conf")
 			.withUsername("datagrid")
 			.withPassword("datagrid");
 
 	@Container
-//	@ServiceConnection
-	static final GenericContainer<?> hazelcast = new GenericContainer<>(DockerImageName.parse("hazelcast/hazelcast:5.1"))
+	static final GenericContainer<?> hazelcast = new GenericContainer<>(DockerImageName.parse("hazelcast/hazelcast:5.7"))
 			.withExposedPorts(5701);
 
 	@DynamicPropertySource
