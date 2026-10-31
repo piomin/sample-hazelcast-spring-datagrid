@@ -14,14 +14,15 @@ public class MysqlAndHazelcastContainersDevMode {
     @Bean
     @ServiceConnection
     public MySQLContainer<?> mysql() {
-        return new MySQLContainer<>("mysql:8.0")
+        return new MySQLContainer<>("mysql:9.7")
+                .withConfigurationOverride("mysql-conf")
                 .withUsername("datagrid")
                 .withPassword("datagrid");
     }
 
     @Bean
     public GenericContainer<?> hazelcast(DynamicPropertyRegistry registry) {
-        GenericContainer<?> hazelcast = new GenericContainer<>(DockerImageName.parse("hazelcast/hazelcast:5.1"))
+        GenericContainer<?> hazelcast = new GenericContainer<>(DockerImageName.parse("hazelcast/hazelcast:5.7"))
                 .withExposedPorts(5701);
         registry.add("spring.hazelcast.url", () -> hazelcast.getHost() + ":" + hazelcast.getFirstMappedPort());
         return hazelcast;
