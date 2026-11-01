@@ -11,7 +11,6 @@ import java.util.List;
 import com.github.dockerjava.api.DockerClient;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.piomin.services.employee.model.Employee;
 import org.testcontainers.DockerClientFactory;
@@ -33,7 +32,6 @@ import static org.awaitility.Awaitility.await;
  * Runs the application as a Hazelcast cluster inside a K3s container and checks
  * that the members discover each other through the Kubernetes API and share data.
  */
-@Disabled("Application pods do not become ready in K3s yet (CrashLoopBackOff), to be investigated")
 @Testcontainers
 class EmployeeKubernetesIT {
 
