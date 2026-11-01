@@ -7,6 +7,7 @@ import pl.piomin.services.employee.model.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/employees")
@@ -21,7 +23,7 @@ public class EmployeeController {
 
     private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
-    private EmployeeRepository repository;
+    private final EmployeeRepository repository;
 
     EmployeeController(EmployeeRepository repository) {
         this.repository = repository;
@@ -35,25 +37,26 @@ public class EmployeeController {
 
     @GetMapping("/company/{company}")
     public List<Employee> findByCompany(@PathVariable("company") String company) {
-        logger.info(String.format("findByCompany({})", company));
+        logger.info("findByCompany({})", company);
         return repository.findByCompany(company);
     }
 
     @GetMapping("/company/{company}/position/{position}")
     public List<Employee> findByCompanyAndPosition(@PathVariable("company") String company, @PathVariable("position") String position) {
-        logger.info(String.format("findByCompany({}, {})", company, position));
+        logger.info("findByCompanyAndPosition({}, {})", company, position);
         return repository.findByCompanyAndPosition(company, position);
     }
 
     @GetMapping("/{id}")
     public Employee findById(@PathVariable("id") Long id) {
         logger.info("findById({})", id);
-        return repository.findById(id).get();
+        return repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Employee " + id + " not found"));
     }
 
     @GetMapping("/salary/{salary}")
     public List<Employee> findBySalaryGreaterThan(@PathVariable("salary") int salary) {
-        logger.info(String.format("findBySalaryGreaterThan({})", salary));
+        logger.info("findBySalaryGreaterThan({})", salary);
         return repository.findBySalaryGreaterThan(salary);
     }
 
