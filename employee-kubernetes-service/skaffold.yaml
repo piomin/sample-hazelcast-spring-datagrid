@@ -5,8 +5,7 @@ metadata:
 build:
   artifacts:
     - image: piomin/employee-service
-      jib:
-        project: pl.piomin.services:employee-kubernetes-service
+      jib: {}
   tagPolicy:
     gitCommit: {}
 manifests:
