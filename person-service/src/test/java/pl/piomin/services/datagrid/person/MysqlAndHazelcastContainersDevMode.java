@@ -5,7 +5,7 @@ import org.springframework.boot.testcontainers.service.connection.ServiceConnect
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.mysql.MySQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
 @TestConfiguration(proxyBeanMethods = false)
@@ -13,8 +13,8 @@ public class MysqlAndHazelcastContainersDevMode {
 
     @Bean
     @ServiceConnection
-    public MySQLContainer<?> mysql() {
-        return new MySQLContainer<>("mysql:9.7")
+    public MySQLContainer mysql() {
+        return new MySQLContainer("mysql:9.7")
                 .withConfigurationOverride("mysql-conf")
                 .withUsername("datagrid")
                 .withPassword("datagrid");

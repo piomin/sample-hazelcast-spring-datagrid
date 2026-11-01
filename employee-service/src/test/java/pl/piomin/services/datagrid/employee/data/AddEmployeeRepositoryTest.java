@@ -11,7 +11,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.test.context.web.ServletTestExecutionListener;
-import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.mysql.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import pl.piomin.services.datagrid.employee.model.Employee;
@@ -38,7 +38,7 @@ public class AddEmployeeRepositoryTest {
 
     @Container
     @ServiceConnection
-    private static final MySQLContainer<?> MYSQL = new MySQLContainer<>("mysql:9.7")
+    private static final MySQLContainer MYSQL = new MySQLContainer("mysql:9.7")
                 .withConfigurationOverride("mysql-conf")
             .withUsername("datagrid")
             .withPassword("datagrid");

@@ -12,7 +12,7 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.test.context.web.ServletTestExecutionListener;
 import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.mysql.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
@@ -40,7 +40,7 @@ public class AddPersonRepositoryTest {
 
 	@Container
 	@ServiceConnection
-	static final MySQLContainer<?> mysql = new MySQLContainer<>(DockerImageName.parse("mysql:9.7"))
+	static final MySQLContainer mysql = new MySQLContainer(DockerImageName.parse("mysql:9.7"))
 			.withConfigurationOverride("mysql-conf")
 			.withUsername("datagrid")
 			.withPassword("datagrid");
